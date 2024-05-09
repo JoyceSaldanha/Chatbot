@@ -1,0 +1,21 @@
+/* Chatbot.css */
+.chat-bubble {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+  }
+  
+  .bot {
+    /* background-color: #DDEEED;
+    color: #000; */
+  }
+  
+  .user {
+    /* background-color: #FDF1E0;
+    color: #000; */
+  }
+
+  .main-app {
+    background: linear-gradient(239.26deg, #DDEEED 63.17%, #FDF1E0 94.92%);
+    padding: 20px; /* Add padding for spacing */
+  }
