@@ -10,7 +10,7 @@ const LoginScreen = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     // Perform login validation and authentication
-    if (username === 'admin' && password === 'password') {
+    if (username === 'user' && password === '123') {
       // Navigate to the main app
       navigate('/chat');
     } else {

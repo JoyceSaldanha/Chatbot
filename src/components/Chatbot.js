@@ -4,8 +4,11 @@ import './ChatStyles.css';
 
 const Chatbot = ({ bubbleColor, delay }) => {
   const [messages, setMessages] = useState([
-    { sender: 'bot', text: 'Hello, how can I assist you today?', bubbleColor: bubbleColor },
-    { sender: 'user', text: 'Hi, I have a question about the app.', bubbleColor: '#dcf8c6' },
+    { sender: 'bot', text: 'Hi there! 👏', bubbleColor: bubbleColor },
+    { sender: 'bot', text: `I'm Joyce - an AI chatbot built by therapists.`, bubbleColor: bubbleColor },
+    { sender: 'bot', text: `I'm here to understand your concerns and connect you with the best resources available to support you.`, bubbleColor: bubbleColor },
+    { sender: 'bot', text: 'Can I help?', bubbleColor: bubbleColor },
+    { sender: 'user', text: 'Hi', bubbleColor: '#dcf8c6' },
     { sender: 'bot', text: 'Sure, what would you like to know?', bubbleColor: bubbleColor },
     { sender: 'bot', image: 'https://images.pexels.com/photos/60597/dahlia-red-blossom-bloom-60597.jpeg?auto=compress&cs=tinysrgb&w=600', bubbleColor: bubbleColor }, // Example image message
   ]);
@@ -13,6 +16,15 @@ const Chatbot = ({ bubbleColor, delay }) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const inputRef = useRef(null);
   const fileInputRef = useRef(null);
+  const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentMessageIndex((prevIndex) => prevIndex + 1);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const handleUserInput = (e) => {
     if (e.key === 'Enter' && (userInput.trim() !== '' || selectedImage)) {
@@ -40,7 +52,7 @@ const Chatbot = ({ bubbleColor, delay }) => {
   return (
     <div className="chatbot">
       <div className="chat-messages">
-        {messages.map((message, index) => (
+        {messages.slice(0, currentMessageIndex + 1).map((message, index) => (
           <div
             key={index}
             className={`chat-bubble ${message.sender === 'bot' ? 'bot' : 'user'}`}
@@ -68,7 +80,6 @@ const Chatbot = ({ bubbleColor, delay }) => {
           <input
             id="file-upload"
             type="file"
-            multiple = "true"
             accept="image/*"
             onChange={handleImageUpload}
             style={{ display: 'none' }}

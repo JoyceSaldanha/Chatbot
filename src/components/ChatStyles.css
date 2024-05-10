@@ -1,21 +1,42 @@
 .main-app {
   background: linear-gradient(239.26deg, #DDEEED 63.17%, #FDF1E0 94.92%);
-  min-height: 100vh; /* Ensure the main-app container covers the full viewport height */
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
   overflow: hidden;
+}
+
+.color-theme {
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.change-theme-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.logout-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .chatbot {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  /* height: 100%; */
   width: 100%;
   max-width: 600px;
-  margin-top: 5rem;
+  margin-top: 1rem;
   margin-bottom: 20px;
   overflow-y: auto;
 }
@@ -28,7 +49,7 @@
 }
 
 .chat-messages::-webkit-scrollbar {
-  display: none; /* Webkit (Safari, Chrome) */
+  display: none;
 }
 
 .chat-bubble {
