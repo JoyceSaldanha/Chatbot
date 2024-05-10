@@ -1,8 +1,8 @@
 // ColorTheme.js
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 
 const ColorTheme = ({ onThemeChange }) => {
-  const themes = [
+  const themes = useMemo(() => [
     {
       background: 'linear-gradient(239.26deg, #DDEEED 63.17%, #FDF1E0 94.92%)',
       bubbleColor: '#E0E5F1',
@@ -23,7 +23,7 @@ const ColorTheme = ({ onThemeChange }) => {
       background: 'linear-gradient(239.26deg, #F1F1E0 63.17%, #FFFFFF 94.92%)',
       bubbleColor: '#F1E0F1',
     },
-  ];
+  ], []);
 
   const [currentThemeIndex, setCurrentThemeIndex] = useState(0);
 
@@ -45,7 +45,7 @@ const ColorTheme = ({ onThemeChange }) => {
 
   return (
     <div className="color-theme" style={{ position: 'absolute', top: 0, right: 0 }}>
-      <button onClick={cycleTheme} style={{position:'relative', top: 20, right: 20 , background: 'none',color:'black', border:'2px solid',borderRadius: '3px'}}>
+      <button onClick={cycleTheme} style={{ position: 'relative', top: 20, right: 20, background: 'none', color: 'black', border: '2px solid', borderRadius: '3px' }}>
         Change Theme
       </button>
     </div>

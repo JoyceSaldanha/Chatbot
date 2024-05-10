@@ -10,13 +10,27 @@ const Chatbot = ({ bubbleColor, delay }) => {
     { sender: 'bot', image: 'https://images.pexels.com/photos/60597/dahlia-red-blossom-bloom-60597.jpeg?auto=compress&cs=tinysrgb&w=600', bubbleColor: bubbleColor }, // Example image message
   ]);
   const [userInput, setUserInput] = useState('');
+  const [selectedImage, setSelectedImage] = useState(null);
   const inputRef = useRef(null);
+  const fileInputRef = useRef(null);
 
   const handleUserInput = (e) => {
-    if (e.key === 'Enter' && userInput.trim() !== '') {
-      setMessages([...messages, { sender: 'user', text: userInput, bubbleColor: '#dcf8c6' }]);
+    if (e.key === 'Enter' && (userInput.trim() !== '' || selectedImage)) {
+      const newMessage = { sender: 'user', bubbleColor: '#dcf8c6' };
+      if (selectedImage) {
+        newMessage.image = URL.createObjectURL(selectedImage);
+      } else {
+        newMessage.text = userInput;
+      }
+      setMessages([...messages, newMessage]);
       setUserInput('');
+      setSelectedImage(null);
     }
+  };
+
+  const handleImageUpload = (e) => {
+    setSelectedImage(e.target.files[0]);
+    setUserInput(e.target.files[0].name);
   };
 
   useEffect(() => {
@@ -35,16 +49,30 @@ const Chatbot = ({ bubbleColor, delay }) => {
             }}
           >
             {message.text}
-            {message.image && <img src={message.image} alt="Image" style={{ width: '200px', height: 'auto' }} />}
+            {message.image && <img src={message.image} alt="Uploaded" style={{ maxWidth: '200px', height: 'auto' }} />}
           </div>
         ))}
         <div ref={inputRef} className="input-container">
+          <div className="input-with-icon">
+            <input
+              type="text"
+              value={userInput}
+              onChange={(e) => setUserInput(e.target.value)}
+              onKeyPress={handleUserInput}
+              placeholder="Type a message or upload an image"
+            />
+            <label htmlFor="file-upload">
+              <i className="fas fa-camera"></i>
+            </label>
+          </div>
           <input
-            type="text"
-            value={userInput}
-            onChange={(e) => setUserInput(e.target.value)}
-            onKeyPress={handleUserInput}
-            placeholder="Type a message and press Enter"
+            id="file-upload"
+            type="file"
+            multiple = "true"
+            accept="image/*"
+            onChange={handleImageUpload}
+            style={{ display: 'none' }}
+            ref={fileInputRef}
           />
         </div>
       </div>

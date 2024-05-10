@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import './ChatStyles.css';
 import Chatbot from './Chatbot';
 import ColorTheme from './ColorTheme';
-import UserProfile from './UserProfile';
 
 const MainApp = () => {
   const [theme, setTheme] = useState({
@@ -19,7 +18,6 @@ const MainApp = () => {
     <div className="main-app" style={{ background: theme.background, height: '100vh' }}>
       <ColorTheme onThemeChange={handleThemeChange} />
       <Chatbot bubbleColor={theme.bubbleColor} />
-      {/* <UserProfile /> */}
     </div>
   );
 };
