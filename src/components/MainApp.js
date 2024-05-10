@@ -1,17 +1,25 @@
 // MainApp.js
-import React from 'react';
+import React, { useState } from 'react';
 import './ChatStyles.css';
 import Chatbot from './Chatbot';
 import ColorTheme from './ColorTheme';
 import UserProfile from './UserProfile';
 
 const MainApp = () => {
+  const [theme, setTheme] = useState({
+    background: 'linear-gradient(239.26deg, #DDEEED 63.17%, #FDF1E0 94.92%)',
+    bubbleColor: '#fff',
+  });
+
+  const handleThemeChange = (newTheme) => {
+    setTheme(newTheme);
+  };
+
   return (
-    <div className="main-app">
-      <h1>Welcome to the Main App</h1>
-      <Chatbot />
-      <ColorTheme />
-      <UserProfile />
+    <div className="main-app" style={{ background: theme.background, height: '100vh' }}>
+      <ColorTheme onThemeChange={handleThemeChange} />
+      <Chatbot bubbleColor={theme.bubbleColor} />
+      {/* <UserProfile /> */}
     </div>
   );
 };
