@@ -44,7 +44,7 @@ const ColorTheme = ({ onThemeChange }) => {
 
   const logout = () => {
     localStorage.removeItem('token');
-    navigate('/login');
+    navigate('/');
   };
 
   const handleColorProfileChange = (color) => {
