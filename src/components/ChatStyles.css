@@ -13,6 +13,13 @@
   justify-content: space-around;
 }
 
+.chatbot-container {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .buttons {
   display: flex;
   gap: 1rem;
@@ -33,19 +40,26 @@
 .chatbot {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: space-between;
   width: 100%;
   max-width: 600px;
   margin-top: 1rem;
   margin-bottom: 20px;
   overflow-y: auto;
+  position: relative; 
 }
 
 .chat-messages {
-  flex-grow: 1; 
+  flex-grow: 1;
   overflow-y: auto;
   padding-bottom: 10px;
   scroll-behavior: smooth;
+  max-height: calc(100vh - 120px);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 40px; 
+  margin-bottom: 1rem;
 }
 
 .chat-messages::-webkit-scrollbar {
@@ -53,7 +67,7 @@
 }
 
 .chat-bubble {
-  max-width: 60%;
+  width: auto;
   padding: 10px;
   border-radius: 15px;
   margin-bottom: 10px;
@@ -85,12 +99,25 @@
 }
 
 .input-container {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%; 
   display: flex;
   align-items: center;
   padding: 10px;
   background-color: #f1f0f0;
-  width: 100%;
   box-sizing: border-box;
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
 }
 
 .input-with-icon {
@@ -116,4 +143,14 @@
 .input-with-icon label i {
   font-size: 20px;
   color: #999;
+}
+
+.image-transition {
+  opacity: 0;
+  animation: fadeIn 1.0s ease-in-out forwards;
+  transition: opacity 0.3s;
+}
+
+.image-transition img {
+  transition: opacity 0.3s;
 }

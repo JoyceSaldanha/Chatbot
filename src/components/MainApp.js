@@ -17,7 +17,7 @@ const MainApp = () => {
   return (
     <div className="main-app" style={{ background: theme.background, height: '100vh' }}>
       <ColorTheme onThemeChange={handleThemeChange} />
-      <Chatbot bubbleColor={theme.bubbleColor} />
+      {/* <Chatbot bubbleColor={theme.bubbleColor} /> */}
     </div>
   );
 };
